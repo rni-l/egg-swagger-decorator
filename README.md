@@ -45,7 +45,7 @@ http://localhost:7001/swagger-html
 ### Requirements
 
 - egg
-- typescript > 2.8
+- typescript > `2.8`
 
 ### Introduction
 

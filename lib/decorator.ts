@@ -1,6 +1,7 @@
 import * as _ from 'lodash';
 
 import { Response } from './swaggerJSON';
+import { deepOmit, handleResponseRequired } from './utils';
 /**
  * used for building swagger docs object
  */
@@ -20,7 +21,7 @@ const _desc = (type, text) => (target, name, descriptor) => {
   return descriptor;
 };
 
-const _params = (type, parameters) => (target, name, descriptor) => {
+const _params = (type: string, parameters: any) => (target, name, descriptor) => {
   if (!descriptor.value.parameters) {
     descriptor.value.parameters = {};
   }
@@ -34,7 +35,14 @@ const _params = (type, parameters) => (target, name, descriptor) => {
       description: 'request body',
       schema: {
         type: 'object',
-        properties: parameters
+        required: Object.entries(parameters as any[]).reduce((acc: string[], [key, value]) => {
+          if (value.required) {
+            acc.push(key);
+          }
+          return acc;
+        }, []),
+        // parameters 移除 required 属性
+        properties: deepOmit(parameters, ['required'])
       }
     }];
   } else {
@@ -55,8 +63,9 @@ const request = (method, path) => (target, name, descriptor) => {
   descriptor.value.method = method;
   descriptor.value.path = path;
   _addToApiObject(target, name, apiObjects, {
-    request: { method, path },
-    security: [{ ApiKeyAuth: [] }]
+    request: { method, path }
+    // TODO: 不符合 swagger 规范
+    // security: [{ ApiKeyAuth: [] }]
   });
   return descriptor;
 };
@@ -68,8 +77,12 @@ const middlewares = (val) => (target, name, descriptor) => {
 };
 
 const responses = (res: Response = { 200: { description: 'success' } }) => (target, name, descriptor) => {
-  descriptor.value.responses = res;
-  _addToApiObject(target, name, apiObjects, { responses: res });
+  const response = Object.entries(res).reduce((acc: { [key: string]: any }, [key, value]) => {
+    acc[key] = handleResponseRequired(value);
+    return acc;
+  }, {});
+  descriptor.value.responses = response;
+  _addToApiObject(target, name, apiObjects, { responses: response });
   return descriptor;
 };
 const desc = _.curry(_desc);

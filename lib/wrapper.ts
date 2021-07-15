@@ -119,9 +119,9 @@ const handleMapDir = (app: Application) => {
   loadSwaggerClassesToContext(app);
   const classes = app.swaggerControllerClasses;
   Object.keys(classes).forEach(name => {
-    // const controller = classes[name].index || classes[name];
-    // if (!controller || typeof controller !== 'function') return false;
-    handleMap(app, classes[name]);
+    const controller = classes[name].index || classes[name];
+    if (!controller || typeof controller !== 'function') return false;
+    handleMap(app, controller);
   });
 };
 const makeSwaggerRouter = (app: Application) => handleMapDir(app);
