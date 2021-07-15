@@ -1,12 +1,14 @@
 class InputError extends Error {
+  field: any
+  status = 200
   /**
    * Constructor
    * @param {string} field the error field in request parameters.
    */
-  constructor(field) {
+  constructor (field) {
     super(`incorrect field: '${field}', please check again!`);
-    this['field'] = field;
-    this['status'] = 400;
+    this.field = field;
+    this.status = 400;
   }
 }
 

@@ -15,7 +15,7 @@ export default (appInfo: EggAppConfig) => {
   // add your config here
   config.middleware = [];
   config.security = {
-    csrf: {enable: false}
-  }
+    csrf: { enable: false }
+  };
   return config;
 };

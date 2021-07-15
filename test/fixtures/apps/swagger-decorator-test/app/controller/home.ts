@@ -19,17 +19,17 @@ export default class HomeController extends Controller {
       schema: {
         type: 'object',
         properties: {
-          msg: { type: 'string', example: 'here is a msg' },
-        },
-      },
-    },
+          msg: { type: 'string', example: 'here is a msg' }
+        }
+      }
+    }
   })
-  public async index() {
+  public async index () {
     const { ctx, service } = this;
     ctx.body = await service.test.sayHi('egg');
   }
 
-  public async notused() {
+  public async notused () {
     const { ctx, service } = this;
     ctx.body = await service.test.sayHi('egg');
   }

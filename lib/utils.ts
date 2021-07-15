@@ -5,18 +5,19 @@ import * as _path from 'path';
  * @param {String} path
  */
 const convertPath = (path) => {
+  // eslint-disable-next-line prefer-regex-literals
   const re = new RegExp('{(.*?)}', 'g');
   return path.replace(re, ':$1');
 };
 
 const getPath = (prefix : string, path : string) => `${prefix}${path}`.replace('//', '/');
 
-function loadSwaggerClassesToContext(app: Application) {
+function loadSwaggerClassesToContext (app: Application) {
   const opt = {
     call: false,
     caseStyle: 'lower',
     directory: _path.join(app.config.baseDir, 'app/controller'),
-    typescript: true,
+    typescript: true
   };
   app.loader.loadToApp(opt.directory, 'swaggerControllerClasses', opt);
 }

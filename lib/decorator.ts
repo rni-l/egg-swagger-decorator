@@ -34,8 +34,8 @@ const _params = (type, parameters) => (target, name, descriptor) => {
       description: 'request body',
       schema: {
         type: 'object',
-        properties: parameters,
-      },
+        properties: parameters
+      }
     }];
   } else {
     swaggerParameters = Object.keys(swaggerParameters).map((key) => {
@@ -56,7 +56,7 @@ const request = (method, path) => (target, name, descriptor) => {
   descriptor.value.path = path;
   _addToApiObject(target, name, apiObjects, {
     request: { method, path },
-    security: [{ ApiKeyAuth: [] }],
+    security: [{ ApiKeyAuth: [] }]
   });
   return descriptor;
 };
@@ -99,5 +99,5 @@ const formData = params('formData');
 
 export {
   request, summary, params, desc, description, query, path, body, tags,
-  apiObjects, middlewares, formData, responses,
+  apiObjects, middlewares, formData, responses
 };

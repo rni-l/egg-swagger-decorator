@@ -1,11 +1,19 @@
 # egg-swagger-decorator [npm-url]
 > using decorator to auto generate swagger json docs
 
+[原仓库地址](https://github.com/Cody2333/egg-swagger-decorator)
+
+因为原作者已经不维护了，所以该项目是 fork 后进行修改的。修改内容如下：
+
+* v0.2.0 修改项目结构，完善文档，使用 eslint 替换 tslint，优化 swagger 文档输出，符合 swagger@2.0 规范
+* v0.1.4 优化报错
+* v0.1.3 修改 controller 报错问题
+
 ## Installation
 
 
 ```bash
-npm install egg-swagger-decorator
+npm install @rnil/egg-swagger-decorator
 ```
 
 ## Introduction
@@ -21,7 +29,7 @@ based on [Swagger OpenAPI Specification 2.0](https://github.com/OAI/OpenAPI-Spec
 ```
 // using commonds below to start and test the example server
 
-git clone https://github.com/Cody2333/egg-swagger-decorator.git
+git clone https://github.com/rni-l/egg-swagger-decorator.git
 
 cd egg-swagger-decorator
 
@@ -173,4 +181,5 @@ responses
  © MIT
 
 
-[npm-url]: https://npmjs.org/package/egg-swagger-decorator
+[npm-url]: https://npmjs.org/package/@rnil/egg-swagger-decorator
+

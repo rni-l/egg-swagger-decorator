@@ -20,7 +20,6 @@ export interface Response {
   [name: number]: any;
 }
 const swaggerJSON = (options: WrapperOptions, apiObjects) => {
-
   const { title = 'API DOC', description = 'API DOC', version = '1.0.0', prefix = '', swaggerOptions = {} } = options;
 
   const resultJSON = init(title, description, version, swaggerOptions);
@@ -40,8 +39,8 @@ const swaggerJSON = (options: WrapperOptions, apiObjects) => {
         : summary;
       const defaultResp: Response = {
         200: {
-          description: 'success',
-        },
+          description: 'success'
+        }
       };
       const responses: Response = value.responses
         ? value.responses
@@ -52,14 +51,14 @@ const swaggerJSON = (options: WrapperOptions, apiObjects) => {
         body = [],
         tags,
         formData = [],
-        security,
+        security
       } = value;
 
       const parameters = [
         ...pathParams,
         ...query,
         ...formData,
-        ...body,
+        ...body
       ];
 
       // init path object first
@@ -77,7 +76,7 @@ const swaggerJSON = (options: WrapperOptions, apiObjects) => {
         parameters,
         responses,
         tags,
-        security,
+        security
       };
     }).value();
   return resultJSON;

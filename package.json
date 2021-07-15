@@ -21,7 +21,7 @@
     "tsc": "ets --cwd=./test/fixtures/apps/swagger-decorator-test && tsc -p tsconfig.json",
     "ci": "npm run lint && npm run cov && npm run tsc",
     "autod": "autod",
-    "lint": "tslint .",
+    "lint": "eslint --fix lib/* test/*",
     "clean": "ets clean",
     "build": "tsc -p tsconfig_publish.json",
     "pub": "npm run build && npm publish"
@@ -34,17 +34,22 @@
     "@types/mocha": "^2.2.40",
     "@types/node": "^7.0.12",
     "@types/supertest": "^2.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.28.3",
+    "@typescript-eslint/parser": "^4.28.3",
     "autod": "^3.0.1",
     "autod-egg": "^1.1.0",
+    "egg": "^2.6.0",
     "egg-bin": "^4.6.3",
     "egg-ci": "^1.8.0",
     "egg-mock": "^3.17.0",
+    "egg-scripts": "^2.6.0",
     "egg-ts-helper": "^1.4.2",
-    "tslib": "^1.9.0",
-    "tslint": "^4.0.0",
-    "typescript": "^2.8.1",
-    "egg": "^2.6.0",
-    "egg-scripts": "^2.6.0"
+    "eslint": "^7.30.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "typescript": "^4.3.2"
   },
   "engines": {
     "node": ">=8.9.0"
